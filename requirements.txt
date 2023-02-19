@@ -1,0 +1,5 @@
+pytest>=7.2.0
+selene>=2.0.0b16
+python-dotenv==0.20.0
+allure-pytest==2.9.45
+selenium==4.4.3
