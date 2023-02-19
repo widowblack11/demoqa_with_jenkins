@@ -1,3 +1,4 @@
+import allure
 from selene import be, have
 # from selene.support.shared import browser
 
@@ -13,11 +14,12 @@ from demoqa_tests.utils.resource import path_file
 class FormPage(RadioMixin, CalendarMixin, CheckboxMixin, DropdownMixin):
     def __init__(self, browser):
         self.browser = browser
-        
+
+    @allure.step("Открыть форму регистрации")
     def open_page_practice_form(self):
         self.browser.open(f'/automation-practice-form')
 
-    # Заполнение формы регистрации
+    @allure.step("Заполнить форму данными")
     def data_fill(self, firstName, lastName, userEmail, gender, Number,  file, year, month,
                   day, Subjects, Hobbies, State, City, Address ):
         self.browser.element('[id="firstName"]').should(be.blank).type(firstName)
@@ -39,10 +41,11 @@ class FormPage(RadioMixin, CalendarMixin, CheckboxMixin, DropdownMixin):
         self.dropdown_react('4', City)
         self.browser.element('#currentAddress').type(Address)
 
-    # Отправка формы регистрации
+    @allure.step("Отправить форму")
     def send_form(self):
         self.browser.element('#submit').press_enter()
 
+    @allure.step("Проверить полученные данные в форме на соответсвие ранее заполненным")
     def check_get_form(self, firstName, lastName, userEmail, gender, Number,  file, date, Subjects, Hobbies, State, City, Address):
         self.browser.all('.table-responsive').all('tr').element(2).should(have.text(userEmail))
         self.browser.all('.table-responsive').all('tr').element(3).should(have.text(gender))
@@ -53,6 +56,7 @@ class FormPage(RadioMixin, CalendarMixin, CheckboxMixin, DropdownMixin):
         self.browser.all('.table-responsive').all('tr').element(8).should(have.text(file))
         self.browser.all('.table-responsive').all('tr').element(9).should(have.text(Address))
 
+    @allure.step("Закрыть форму с данными")
     def close_form(self):
         self.browser.element('#closeLargeModal').press_enter()
 
