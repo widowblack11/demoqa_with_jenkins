@@ -3,6 +3,9 @@ import allure
 from demoqa_tests.model.pages.practice_form import FormPage
 
 
+@allure.feature("Регистрация через форму сайта")
+@allure.title("Успешная регистрация при заполнении всех обязательных полей")
+@allure.story("Регистрация")
 def test_practice_form(setup_browser):
     with allure.step("Настроить браузер"):
         form_page = FormPage(setup_browser)
