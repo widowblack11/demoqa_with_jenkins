@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 from demoqa_tests.utils import attach
 
 
-
-
 DEFAULT_BROWSER_VERSION = "100.0"
 
 
